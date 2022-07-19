@@ -1,7 +1,7 @@
 {
   "name": "@ts-koa/koa-morgan",
   "description": "HTTP request logger middleware for Koa.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Louis Huang <ar.work.acc@gmail.com>",
   "license": "MIT",
   "keywords": [

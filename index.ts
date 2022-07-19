@@ -2,17 +2,17 @@ import auth from "basic-auth"
 import { Context, Next } from "koa"
 
 /**
- * Koa Morgan logger receives a function that accepts a string and prints out the content of that string.
+ * Koa Morgan logger receives a function that accepts a message and prints out the content of that string.
  */
-type MorganLogger = (message: string) => void
+type MorganLogger = (message: any) => void
 
 /**
- * Koa Morgan options.  
- * 
- * Supports:  
- * logger: a logger to print out logs  
- * colored: bool, whether to print out status code with colors or not  
- * skip: a predicate to skip logging  
+ * Koa Morgan options.
+ *
+ * Supports:
+ * logger: a logger to print out logs
+ * colored: bool, whether to print out status code with colors or not
+ * skip: a predicate to skip logging
  */
 type MorganOptions = {
   logger: MorganLogger

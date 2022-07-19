@@ -57,7 +57,7 @@ Output logger for writing log lines, defaults to `console.log`.
 Argument type: MorganLogger
 
 ```TypeScript
-type MorganLogger = (message: string) => void
+type MorganLogger = (message: any) => void
 ```
 
 ##### colored

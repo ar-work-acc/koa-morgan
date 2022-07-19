@@ -1,8 +1,8 @@
 import { Context, Next } from "koa"
 /**
- * Koa Morgan logger receives a function that accepts a string and prints out the content of that string.
+ * Koa Morgan logger receives a function that accepts a message and prints out the content of that string.
  */
-declare type MorganLogger = (message: string) => void
+declare type MorganLogger = (message: any) => void
 /**
  * Koa Morgan options.
  *
