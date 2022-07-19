@@ -11,13 +11,13 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```sh
-$ npm i @arworkacc/koa-morgan
+$ npm i @ts-koa/koa-morgan
 ```
 
 ## Basic Usage:
 
 ```TypeScript
-import { morgan } from "@arworkacc/koa-morgan"
+import { morgan } from "@ts-koa/koa-morgan"
 
 const app = new Koa()
 app.use(morgan())
