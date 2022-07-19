@@ -1,4 +1,4 @@
-# @arworkacc/koa-morgan
+# @ts-koa/koa-morgan
 
 HTTP request logger middleware for Koa.js.
 
