@@ -1,5 +1,5 @@
 {
-  "name": "@arworkacc/koa-morgan",
+  "name": "@ts-koa/koa-morgan",
   "description": "HTTP request logger middleware for Koa.js",
   "version": "0.0.1",
   "author": "Louis Huang <ar.work.acc@gmail.com>",
@@ -51,5 +51,8 @@
   "homepage": "https://github.com/ar-work-acc/koa-morgan#readme",
   "dependencies": {
     "basic-auth": "^2.0.1"
+  },
+  "directories": {
+    "test": "test"
   }
 }
