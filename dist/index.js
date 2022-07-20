@@ -144,7 +144,13 @@ tokenMap.set("remote-user", (ctx, arg) => {
 // request header
 tokenMap.set("req", (ctx, arg) => {
   const header = ctx.req.headers[arg.toLowerCase()]
-  return Array.isArray(header) ? header.join(", ") : header
+  if (header === undefined) {
+    return "-"
+  } else if (Array.isArray(header)) {
+    return header.join(", ")
+  } else {
+    return header
+  }
 })
 // response header
 tokenMap.set("res", (ctx, arg) => {
@@ -155,7 +161,13 @@ tokenMap.set("res", (ctx, arg) => {
     default:
       // get header
       const header = ctx.res.getHeader(arg)
-      return Array.isArray(header) ? header.join(", ") : header
+      if (header === undefined) {
+        return "-"
+      } else if (Array.isArray(header)) {
+        return header.join(", ")
+      } else {
+        return header
+      }
   }
 })
 // response time in milliseconds

@@ -206,7 +206,7 @@ describe("test koa-morgan logging middleware", () => {
 
   test("test token :req", async () => {
     const mockLogger = jest.fn().mockName("req")
-    const app = AppFactory(":req[x-from-string]", { logger: mockLogger })
+    const app = AppFactory(":req[x-from-string] :req[does-not-exist]", { logger: mockLogger })
     const server = app.listen()
     const agent = supertest.agent(server)
 
@@ -214,7 +214,7 @@ describe("test koa-morgan logging middleware", () => {
 
     expect(mockLogger).toHaveBeenCalled()
     expect(mockLogger).toBeCalledTimes(1)
-    expect(mockLogger).toHaveBeenCalledWith("me")
+    expect(mockLogger).toHaveBeenCalledWith("me -")
 
     server.close()
   })
@@ -239,7 +239,7 @@ describe("test koa-morgan logging middleware", () => {
 
   test("test token :res (array)", async () => {
     const mockLogger = jest.fn().mockName("res array")
-    const app = AppFactory(":res[X-Keys]", { logger: mockLogger })
+    const app = AppFactory(":res[X-Keys] :res[does-not-exist]", { logger: mockLogger })
     const server = app.listen()
     const agent = supertest.agent(server)
 
@@ -247,7 +247,7 @@ describe("test koa-morgan logging middleware", () => {
 
     expect(mockLogger).toHaveBeenCalled()
     expect(mockLogger).toBeCalledTimes(1)
-    expect(mockLogger).toHaveBeenCalledWith("foo, bar")
+    expect(mockLogger).toHaveBeenCalledWith("foo, bar -")
 
     server.close()
   })
