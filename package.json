@@ -1,7 +1,7 @@
 {
   "name": "@ts-koa/koa-morgan",
   "description": "HTTP request logger middleware for Koa.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Louis Huang <ar.work.acc@gmail.com>",
   "license": "MIT",
   "keywords": [
@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "npx tsc && npx prettier --write dist",
+    "lint": "npx eslint index.ts test",
     "test": "jest --verbose"
   },
   "devDependencies": {
@@ -36,6 +37,9 @@
     "@types/koa__router": "^8.0.11",
     "@types/koa-bodyparser": "^4.3.7",
     "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
     "jest": "^28.1.3",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",

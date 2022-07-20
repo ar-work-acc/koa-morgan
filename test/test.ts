@@ -1,3 +1,4 @@
+/* eslint-disable no-control-regex */
 import { AppFactory } from "./test-server"
 import supertest from "supertest"
 import { logging } from "./logger"
@@ -121,7 +122,7 @@ describe("test koa-morgan logging middleware", () => {
       /\d{2}\/\w{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+0000/
     )
     const utcFormatString = regexpToString(
-      /(Mon|Tue|...|Sun)\,\s\d{2}\s(Jan|Feb|...|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT/
+      /(Mon|Tue|...|Sun),\s\d{2}\s(Jan|Feb|...|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT/
     )
     expect(mockLogger.mock.calls[0][0]).toMatch(
       new RegExp(

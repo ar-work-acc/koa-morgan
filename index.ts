@@ -170,7 +170,7 @@ tokenMap.set("remote-addr", (ctx: Context, arg?: string) => {
 // remote user
 tokenMap.set("remote-user", (ctx: Context, arg?: string) => {
   // parse basic credentials
-  var credentials = auth(ctx.req)
+  const credentials = auth(ctx.req)
 
   // return username
   return credentials ? credentials.name : undefined
@@ -190,13 +190,14 @@ tokenMap.set("req", (ctx: Context, arg: string) => {
 
 // response header
 tokenMap.set("res", (ctx: Context, arg: string) => {
+  let header
   switch (arg) {
     case "content-length":
       // TODO Koa content-length can't get retrieved from ctx.response.get...why???
       return ctx.length ?? 0
     default:
       // get header
-      const header = ctx.res.getHeader(arg)
+      header = ctx.res.getHeader(arg)
       if (header === undefined) {
         return "-"
       } else if (Array.isArray(header)) {
