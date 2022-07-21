@@ -43,7 +43,7 @@ formatMap.set(
  */
 // Pad number to two digits.
 const pad2 = (num) => {
-  let str = String(num)
+  const str = String(num)
   return `${str.length === 1 ? "0" : ""}${str}`
 }
 // Format a Date in the common log format.
@@ -62,12 +62,12 @@ const clfDate = (dateTime) => {
     "Nov",
     "Dec",
   ]
-  let date = dateTime.getUTCDate()
-  let hour = dateTime.getUTCHours()
-  let mins = dateTime.getUTCMinutes()
-  let secs = dateTime.getUTCSeconds()
-  let year = dateTime.getUTCFullYear()
-  let month = CLF_MONTH[dateTime.getUTCMonth()]
+  const date = dateTime.getUTCDate()
+  const hour = dateTime.getUTCHours()
+  const mins = dateTime.getUTCMinutes()
+  const secs = dateTime.getUTCSeconds()
+  const year = dateTime.getUTCFullYear()
+  const month = CLF_MONTH[dateTime.getUTCMonth()]
   return (
     pad2(date) +
     "/" +
@@ -104,7 +104,7 @@ const getColoredStatus = (status) => {
 const tokenMap = new Map()
 // current date
 tokenMap.set("date", (ctx, format) => {
-  let date = new Date()
+  const date = new Date()
   switch (format || "web") {
     case "clf":
       return clfDate(date)
@@ -115,17 +115,17 @@ tokenMap.set("date", (ctx, format) => {
   }
 })
 // HTTP version
-tokenMap.set("http-version", (ctx, arg) => {
+tokenMap.set("http-version", (ctx) => {
   return `${ctx.req.httpVersionMajor}.${ctx.req.httpVersionMinor}`
 })
 // request method
-tokenMap.set("method", (ctx, arg) => ctx.method)
+tokenMap.set("method", (ctx) => ctx.method)
 // normalized referrer
-tokenMap.set("referrer", (ctx, arg) => {
+tokenMap.set("referrer", (ctx) => {
   return ctx.req.headers.referer || ctx.req.headers.referrer
 })
 // remote address
-tokenMap.set("remote-addr", (ctx, arg) => {
+tokenMap.set("remote-addr", (ctx) => {
   const req = ctx.req
   return (
     ctx.request.ip ||
@@ -135,7 +135,7 @@ tokenMap.set("remote-addr", (ctx, arg) => {
   )
 })
 // remote user
-tokenMap.set("remote-user", (ctx, arg) => {
+tokenMap.set("remote-user", (ctx) => {
   // parse basic credentials
   const credentials = (0, basic_auth_1.default)(ctx.req)
   // return username
@@ -172,7 +172,7 @@ tokenMap.set("res", (ctx, arg) => {
   }
 })
 // response time in milliseconds
-tokenMap.set("response-time", (ctx, arg) => {
+tokenMap.set("response-time", (ctx) => {
   // TODO: only gives response time in ms now
   return `${ctx.state.responseTime}`
 })
@@ -185,9 +185,9 @@ tokenMap.set("status", (ctx, arg, colored = false) => {
   }
 })
 // request url
-tokenMap.set("url", (ctx, arg) => ctx.url)
+tokenMap.set("url", (ctx) => ctx.url)
 // user agent string
-tokenMap.set("user-agent", (ctx, arg) => {
+tokenMap.set("user-agent", (ctx) => {
   return ctx.req.headers["user-agent"]
 })
 /**
