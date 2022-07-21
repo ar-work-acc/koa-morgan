@@ -4,6 +4,7 @@ import { Context, Next } from "koa"
 /**
  * Koa Morgan logger receives a function that accepts a message and prints out the content of that string.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type MorganLogger = (message: any) => void
 
 /**
