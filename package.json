@@ -19,6 +19,7 @@
   "files": [
     "LICENSE",
     "README.md",
+    "index.ts",
     "dist"
   ],
   "engines": {
