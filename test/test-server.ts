@@ -35,7 +35,7 @@ export const AppFactory = (
   router.get("/500", (ctx: Context) => {
     ctx.status = 500
   })
-  router.get("/error", (ctx: Context) => {
+  router.get("/error", () => {
     throw new Error("boom")
   })
 

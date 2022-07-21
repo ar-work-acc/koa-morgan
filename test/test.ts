@@ -1,9 +1,10 @@
 /* eslint-disable no-control-regex */
 import { AppFactory } from "./test-server"
 import supertest from "supertest"
-import { logging } from "./logger"
 import { Context } from "koa"
-const logger = logging("jest")
+
+// import { logging } from "./logger"
+// const logger = logging("jest")
 
 /**
  * convert a RegExp to a string for later concatenation
@@ -16,12 +17,6 @@ const regexpToString = (regexp: RegExp) => {
 }
 
 describe("test koa-morgan logging middleware", () => {
-  // beforeEach(async () => {
-  // })
-
-  // afterEach(async () => {
-  // })
-
   test("test 200 default format", async () => {
     const mockLogger = jest.fn().mockName("200-default")
     const app = AppFactory("dev", {
@@ -207,7 +202,9 @@ describe("test koa-morgan logging middleware", () => {
 
   test("test token :req", async () => {
     const mockLogger = jest.fn().mockName("req")
-    const app = AppFactory(":req[x-from-string] :req[does-not-exist]", { logger: mockLogger })
+    const app = AppFactory(":req[x-from-string] :req[does-not-exist]", {
+      logger: mockLogger,
+    })
     const server = app.listen()
     const agent = supertest.agent(server)
 
@@ -240,7 +237,9 @@ describe("test koa-morgan logging middleware", () => {
 
   test("test token :res (array)", async () => {
     const mockLogger = jest.fn().mockName("res array")
-    const app = AppFactory(":res[X-Keys] :res[does-not-exist]", { logger: mockLogger })
+    const app = AppFactory(":res[X-Keys] :res[does-not-exist]", {
+      logger: mockLogger,
+    })
     const server = app.listen()
     const agent = supertest.agent(server)
 

@@ -64,7 +64,7 @@ formatMap.set(
 
 // Pad number to two digits.
 const pad2 = (num: number) => {
-  let str = String(num)
+  const str = String(num)
   return `${str.length === 1 ? "0" : ""}${str}`
 }
 
@@ -84,13 +84,13 @@ const clfDate = (dateTime: Date) => {
     "Nov",
     "Dec",
   ]
-  let date = dateTime.getUTCDate()
-  let hour = dateTime.getUTCHours()
-  let mins = dateTime.getUTCMinutes()
-  let secs = dateTime.getUTCSeconds()
-  let year = dateTime.getUTCFullYear()
+  const date = dateTime.getUTCDate()
+  const hour = dateTime.getUTCHours()
+  const mins = dateTime.getUTCMinutes()
+  const secs = dateTime.getUTCSeconds()
+  const year = dateTime.getUTCFullYear()
 
-  let month = CLF_MONTH[dateTime.getUTCMonth()]
+  const month = CLF_MONTH[dateTime.getUTCMonth()]
 
   return (
     pad2(date) +
@@ -132,7 +132,7 @@ const tokenMap = new Map()
 
 // current date
 tokenMap.set("date", (ctx: Context, format?: string) => {
-  let date = new Date()
+  const date = new Date()
   switch (format || "web") {
     case "clf":
       return clfDate(date)
@@ -144,20 +144,20 @@ tokenMap.set("date", (ctx: Context, format?: string) => {
 })
 
 // HTTP version
-tokenMap.set("http-version", (ctx: Context, arg?: string) => {
+tokenMap.set("http-version", (ctx: Context) => {
   return `${ctx.req.httpVersionMajor}.${ctx.req.httpVersionMinor}`
 })
 
 // request method
-tokenMap.set("method", (ctx: Context, arg?: string) => ctx.method)
+tokenMap.set("method", (ctx: Context) => ctx.method)
 
 // normalized referrer
-tokenMap.set("referrer", (ctx: Context, arg?: string) => {
+tokenMap.set("referrer", (ctx: Context) => {
   return ctx.req.headers.referer || ctx.req.headers.referrer
 })
 
 // remote address
-tokenMap.set("remote-addr", (ctx: Context, arg?: string) => {
+tokenMap.set("remote-addr", (ctx: Context) => {
   const req = ctx.req
   return (
     ctx.request.ip ||
@@ -168,7 +168,7 @@ tokenMap.set("remote-addr", (ctx: Context, arg?: string) => {
 })
 
 // remote user
-tokenMap.set("remote-user", (ctx: Context, arg?: string) => {
+tokenMap.set("remote-user", (ctx: Context) => {
   // parse basic credentials
   const credentials = auth(ctx.req)
 
@@ -209,28 +209,25 @@ tokenMap.set("res", (ctx: Context, arg: string) => {
 })
 
 // response time in milliseconds
-tokenMap.set("response-time", (ctx: Context, arg?: string) => {
+tokenMap.set("response-time", (ctx: Context) => {
   // TODO: only gives response time in ms now
   return `${ctx.state.responseTime}`
 })
 
 // response status code (colored or not)
-tokenMap.set(
-  "status",
-  (ctx: Context, arg?: string, colored: boolean = false) => {
-    if (colored) {
-      return getColoredStatus(ctx.status)
-    } else {
-      return ctx.status
-    }
+tokenMap.set("status", (ctx: Context, arg?: string, colored = false) => {
+  if (colored) {
+    return getColoredStatus(ctx.status)
+  } else {
+    return ctx.status
   }
-)
+})
 
 // request url
-tokenMap.set("url", (ctx: Context, arg?: string) => ctx.url)
+tokenMap.set("url", (ctx: Context) => ctx.url)
 
 // user agent string
-tokenMap.set("user-agent", (ctx: Context, arg?: string) => {
+tokenMap.set("user-agent", (ctx: Context) => {
   return ctx.req.headers["user-agent"]
 })
 
@@ -244,7 +241,7 @@ tokenMap.set("user-agent", (ctx: Context, arg?: string) => {
  * @returns a Koa middleware to log request information
  */
 const morgan = (
-  format: string = "default",
+  format = "default",
   options: MorganOptions = {
     logger: console.log,
     colored: true,

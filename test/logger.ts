@@ -1,6 +1,6 @@
 import winston from "winston"
 
-export const logging = (tag: string = "jest") => {
+export const logging = (tag = "jest") => {
   const logFormat = winston.format.printf(
     ({ timestamp, level, message }) =>
       `${timestamp} ${level} [${tag}]: ${message}`
